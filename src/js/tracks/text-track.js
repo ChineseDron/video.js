@@ -1,10 +1,13 @@
+/**
+ * @file text-track.js
+ */
 import TextTrackCueList from './text-track-cue-list';
 import * as Fn from '../utils/fn.js';
 import * as Guid from '../utils/guid.js';
 import * as browser from '../utils/browser.js';
 import * as TextTrackEnum from './text-track-enums';
 import log from '../utils/log.js';
-import EventEmitter from '../event-emitter';
+import EventTarget from '../event-target';
 import document from 'global/document';
 import window from 'global/window';
 import XHR from '../xhr.js';
@@ -173,6 +176,7 @@ let TextTrack = function(options={}) {
   });
 
   if (options.src) {
+    tt.src = options.src;
     loadTrack(options.src, tt);
   } else {
     tt.loaded_ = true;
@@ -183,7 +187,7 @@ let TextTrack = function(options={}) {
   }
 };
 
-TextTrack.prototype = Object.create(EventEmitter.prototype);
+TextTrack.prototype = Object.create(EventTarget.prototype);
 TextTrack.prototype.constructor = TextTrack;
 
 /*
@@ -225,8 +229,8 @@ TextTrack.prototype.removeCue = function(removeCue) {
 };
 
 /*
- * Downloading stuff happens below this point
- */
+* Downloading stuff happens below this point
+*/
 var parseCues = function(srcContent, track) {
   if (typeof window['WebVTT'] !== 'function') {
     //try again a bit later

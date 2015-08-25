@@ -7,11 +7,6 @@
   vertical-align: top;
   box-sizing: border-box;
 
-  /* Default to the video element width/height. This will be overridden by
-   * the source width height unless changed elsewhere. */
-  width: 300px;
-  height: 150px;
-
   color: $primary-text;
   background-color: $primary-bg;
   position: relative;
@@ -86,7 +81,7 @@ body.vjs-full-window {
   /* Fix for IE6 full-window. http://www.cssplay.co.uk/layouts/fixed.html */
   overflow-y: auto;
 }
-.video-js.vjs-fullscreen {
+.vjs-full-window .video-js.vjs-fullscreen {
   position: fixed;
   overflow: hidden;
   z-index: 1000;
@@ -94,6 +89,8 @@ body.vjs-full-window {
   top: 0;
   bottom: 0;
   right: 0;
+}
+.video-js.vjs-fullscreen {
   width: 100% !important;
   height: 100% !important;
   /* Undo any aspect ratio padding for fluid layouts */

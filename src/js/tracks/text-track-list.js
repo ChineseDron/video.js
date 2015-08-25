@@ -1,4 +1,7 @@
-import EventEmitter from '../event-emitter';
+/**
+ * @file text-track-list.js
+ */
+import EventTarget from '../event-target';
 import * as Fn from '../utils/fn.js';
 import * as browser from '../utils/browser.js';
 import document from 'global/document';
@@ -45,14 +48,14 @@ let TextTrackList = function(tracks) {
   }
 };
 
-TextTrackList.prototype = Object.create(EventEmitter.prototype);
+TextTrackList.prototype = Object.create(EventTarget.prototype);
 TextTrackList.prototype.constructor = TextTrackList;
 
 /*
  * change - One or more tracks in the track list have been enabled or disabled.
  * addtrack - A track has been added to the track list.
  * removetrack - A track has been removed from the track list.
-*/
+ */
 TextTrackList.prototype.allowedEvents_ = {
   'change': 'change',
   'addtrack': 'addtrack',
